@@ -23,7 +23,7 @@ jobs:
           path: linux-zen
       - name: Prepare for build
         run: |
-           cd linux-zen
+           cd linux-zen/svntogit-packages/trunk/
            curl -L https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.2/0013-optimize_harder_O3.patch -o O3.patch
            sed -i -e '/make olddefconfig/i \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/make olddefconfig/i \ \ scripts/config -e CONFIG_LTO_FULL' PKGBUILD
