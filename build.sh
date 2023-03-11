@@ -8,5 +8,6 @@ pacman -Syu --noconfirm base-devel sudo schedtool
 #unzip llvm-git.zip
 #pacman --noconfirm -U llvm-git*.pkg.tar.zst llvm-libs-git*.pkg.tar.zst
 useradd builder  -u $USERID -m -G wheel && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-su builder -c "gpg --recv 38DBBDC86092693E"
+#su builder -c "gpg --recv 38DBBDC86092693E"
+su builder -c "gpg --recv 3B94A80E50A477C7"
 cd /workspace/linux-zen/trunk ; su builder -c "yes '' | MAKEFLAGS=\"-j $(nproc)\" makepkg --noconfirm -sc"
