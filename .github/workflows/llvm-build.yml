@@ -29,7 +29,7 @@ jobs:
            sed -i -e '/make olddefconfig/i \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/make olddefconfig/i \ \ scripts/config -e CONFIG_LTO_FULL' PKGBUILD
            sed -i -e '/make olddefconfig/i \ \ scripts/config -d CONFIG_LTO_THIN' PKGBUILD
-           sed -i -e '/make olddefconfig/i \ \ grep LTO' PKGBUILD
+           sed -i -e '/make olddefconfig/i \ \ grep LTO .config' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
       - name: Build kernel
