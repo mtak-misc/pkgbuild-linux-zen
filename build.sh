@@ -9,4 +9,4 @@ pacman -Syu --noconfirm base-devel sudo schedtool
 #pacman --noconfirm -U llvm-git*.pkg.tar.zst llvm-libs-git*.pkg.tar.zst
 useradd builder  -u $USERID -m -G wheel && echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 su builder -c "gpg --recv 38DBBDC86092693E"
-cd /workspace/linux-zen ; su builder -c "yes '' | MAKEFLAGS=\"-j $(nproc)\" makepkg --noconfirm -sc"
+cd /workspace/linux-zen/trunk ; su builder -c "yes '' | MAKEFLAGS=\"-j $(nproc)\" makepkg --noconfirm -sc"
