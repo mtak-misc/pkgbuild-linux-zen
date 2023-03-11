@@ -1,6 +1,3 @@
 #!/bin/sh
 
-_patches=$1"/*.patch"
-for _f in "${_patches[@]}"; do
-  patch -Np1 < "${_f}"
-done
+ls -1 $1"/*.patch" | awk '{ print "patch -Np1 < "$1}' | /bin/bash
