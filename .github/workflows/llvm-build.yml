@@ -30,7 +30,6 @@ jobs:
         run: |
            mv linux-patches/linux-6.2.y-xanmod/net/bbr2 linux-zen/trunk
            cd linux-zen/trunk/
-           ls -l bbr2
            sed -i -e '/local src/i \ \ /bin/bash ../../../../apply-patches.sh ../../../bbr2' PKGBUILD
            curl -L https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.2/0013-optimize_harder_O3.patch -o O3.patch
            sed -i -e '/local src/i \ \ patch -Np1 -i ../../O3.patch' PKGBUILD
