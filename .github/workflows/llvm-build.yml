@@ -30,10 +30,9 @@ jobs:
         run: |
            mv linux-patches/linux-6.2.y-xanmod/net/bbr2 linux-zen/trunk
            cd linux-zen/trunk/
-           sed -i -e '/echo "Setting config..."/i \ \ /bin/bash ../../../../apply-patches.sh /workspace/linux-zen/trunk/bbr2' PKGBUILD
+           sed -i -e '/echo "Setting config..."/i \ \ /bin/bash ../../../../apply-patches.sh ../../bbr2' PKGBUILD
            curl -L https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.2/0013-optimize_harder_O3.patch -o O3.patch
            sed -i -e '/echo "Setting config..."/i \ \ patch -Np1 -i ../../O3.patch' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ grep LTO_FULL .config' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ cat .config > "${startdir}/config.last"' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_LTO_FULL' PKGBUILD
