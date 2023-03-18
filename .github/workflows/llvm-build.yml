@@ -32,9 +32,9 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_THIN' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_DEFAULT_BBR2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_SCHED_PDS' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_SCHED_BMQ' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
            cat PKGBUILD
