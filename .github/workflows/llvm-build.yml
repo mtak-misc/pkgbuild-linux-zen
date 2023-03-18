@@ -21,6 +21,11 @@ jobs:
           repository: archlinux/svntogit-packages
           ref: 'packages/linux-zen'
           path: linux-zen
+      - name: Check out zen-kernel repository
+        uses: actions/checkout@v3
+        with:
+          repository: zen-kernel/zen-kernel
+          path: linux-zen/trunk/zen-kernel
       - name: Prepare for build
         run: |
            cd linux-zen/trunk/
