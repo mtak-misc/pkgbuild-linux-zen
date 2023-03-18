@@ -46,7 +46,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s/CONFIG_DEFAULT_CUBIC=y/CONFIG_DEFAULT_BBR2=y/g" ./.config' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
-           sed -i -e 's/"$_srcname::git+https://github.com/zen-kernel/zen-kernel?signed#tag=$_srctag"/$_srcname/g' PKGBUILD
+           sed -i -e 's/"$_srcname::git+https:\/\/github.com\/zen-kernel\/zen-kernel?signed#tag=$_srctag"/$_srcname/g' PKGBUILD
            sed -i -e 's/_srcname=zen-kernel/_srcname=linux/g' PKGBUILD
            cat PKGBUILD
       - name: Build kernel
