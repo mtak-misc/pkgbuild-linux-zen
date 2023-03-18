@@ -26,18 +26,21 @@ jobs:
            cd linux-zen/trunk/
            curl -LO https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.2/0013-optimize_harder_O3.patch
            sed -i -e '/echo "Setting config..."/i \ \ patch -Np1 -i ../../0013-optimize_harder_O3.patch' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ grep SCHED_PDS .config' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ cat .config > "${startdir}/config.last"' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_NONE' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_LTO_FULL' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_THIN' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_DEFAULT_BBR2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_SCHED_PDS' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_SCHED_BMQ' PKGBUILD
-           sed -i -e '/make htmldocs all/i \ \ grep CONFIG_LTO_FULL .config' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_SCHED_ALT' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s/CONFIG_DEFAULT_CUBIC=y/CONFIG_DEFAULT_BBR2=y/g" ./.config' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
+           
            cat PKGBUILD
       - name: Build kernel
         run: |
