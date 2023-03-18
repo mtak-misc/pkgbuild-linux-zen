@@ -31,8 +31,8 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_DEFAULT_BBR2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config --set-str "DEFAULT_TCP_CONG" "bbr2"' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e "DEFAULT_BBR2"' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -e CONFIG_SCHED_PDS' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --file ./.config -d CONFIG_SCHED_BMQ' PKGBUILD
