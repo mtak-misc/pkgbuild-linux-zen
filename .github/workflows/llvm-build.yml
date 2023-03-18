@@ -30,7 +30,10 @@ jobs:
         run: |
            mv linux-patches/linux-6.2.y-xanmod/net/bbr2 linux-zen/trunk
            cd linux-zen/trunk/
+           mkdir bore
+           curl -L https://raw.githubusercontent.com/firelzrd/bore-scheduler/main/bore/0001-linux6.2.y-bore1.7.12.patch -o bore/bore.patch
            sed -i -e '/echo "Setting config..."/i \ \ /bin/bash ../../../../apply-patches.sh /workspace/linux-zen/trunk/bbr2' PKGBUILD
+           sed -i -e '/echo "Setting config..."/i \ \ /bin/bash ../../../../apply-patches.sh /workspace/linux-zen/trunk/bore' PKGBUILD
            curl -L https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.2/0013-optimize_harder_O3.patch -o O3.patch
            sed -i -e '/echo "Setting config..."/i \ \ patch -Np1 -i ../../O3.patch' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ cat .config > "${startdir}/config.last"' PKGBUILD
