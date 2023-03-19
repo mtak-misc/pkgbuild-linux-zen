@@ -39,6 +39,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_ALT' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/make olddefconfig/make LLVM=1 LLVM_IAS=1 olddefconfig/g' PKGBUILD
+           sed -i -e 's/make -s kernelrelease/make LLVM=1 LLVM_IAS=1 -s kernelrelease/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
       - name: Build kernel
         run: |
