@@ -33,13 +33,12 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d DEFAULT_CUBIC' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR2' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_PDS' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_SCHED_BMQ' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_ALT' PKGBUILD
-           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_CUBIC .config' PKGBUILD
-           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_BBR2 .config' PKGBUILD
-           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_TCP_CONG .config' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/make olddefconfig/make LLVM=1 LLVM_IAS=1 olddefconfig/g' PKGBUILD
            sed -i -e 's/make -s kernelrelease/make LLVM=1 LLVM_IAS=1 -s kernelrelease/g' PKGBUILD
