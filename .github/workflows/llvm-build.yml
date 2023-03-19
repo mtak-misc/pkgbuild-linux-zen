@@ -41,6 +41,9 @@ jobs:
            sed -i -e 's/make olddefconfig/make LLVM=1 LLVM_IAS=1 olddefconfig/g' PKGBUILD
            sed -i -e 's/make -s kernelrelease/make LLVM=1 LLVM_IAS=1 -s kernelrelease/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
+           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_CUBIC .config' PKGBUILD
+           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_BBR2 .config' PKGBUILD
+           sed -i -e '/make htmldocs all/i \ \ grep DEFAULT_TCP_CONG .config' PKGBUILD
       - name: Build kernel
         run: |
            docker run -e USERID=$(id -u $(whoami)) -e GITHUB_TOKEN=${{ secrets.pat }} -v $GITHUB_WORKSPACE:/workspace archlinux:latest /bin/bash /workspace/build.sh
