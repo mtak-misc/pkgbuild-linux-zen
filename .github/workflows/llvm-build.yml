@@ -42,6 +42,7 @@ jobs:
            sed -i -e 's/make olddefconfig/make LLVM=1 LLVM_IAS=1 olddefconfig/g' PKGBUILD
            sed -i -e 's/make -s kernelrelease/make LLVM=1 LLVM_IAS=1 -s kernelrelease/g' PKGBUILD
            sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
+           sed -i -e 's/$_srctag/6.2\/main/g' PKGBUILD
       - name: Build kernel
         run: |
            docker run -e USERID=$(id -u $(whoami)) -e GITHUB_TOKEN=${{ secrets.pat }} -v $GITHUB_WORKSPACE:/workspace archlinux:latest /bin/bash /workspace/build.sh
