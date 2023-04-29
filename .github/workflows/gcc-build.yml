@@ -1,0 +1,45 @@
+name: gcc -build
+
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron: '0 18 24 1 *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 13
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Check out linux-zen repository
+        uses: actions/checkout@v3
+        with:
+          repository: archlinux/svntogit-packages
+          ref: 'packages/linux-zen'
+          path: linux-zen
+      - name: Prepare for build
+        run: |
+           cd linux-zen/trunk/
+           curl -LO https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.3/0013-optimize_harder_O3.patch
+           sed -i -e '/echo "Setting config..."/i \ \ patch -Np1 -i ../../0013-optimize_harder_O3.patch' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d DEFAULT_CUBIC' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_PDS' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_SCHED_BMQ' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_ALT' PKGBUILD
+      - name: Build kernel
+        run: |
+           docker run -e USERID=$(id -u $(whoami)) -e GITHUB_TOKEN=${{ secrets.pat }} -v $GITHUB_WORKSPACE:/workspace archlinux:latest /bin/bash /workspace/build.sh
+           cp $GITHUB_WORKSPACE/linux-zen/trunk/*.pkg.tar.zst /tmp
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-zen
+          path: /tmp/*.pkg.tar.zst
