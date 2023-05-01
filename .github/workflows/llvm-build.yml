@@ -38,6 +38,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_PDS' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_SCHED_BMQ' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_ALT' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_NUMA' PKGBUILD
            sed -i -e 's/make htmldocs all/make LLVM=1 LLVM_IAS=1 htmldocs all/g' PKGBUILD
            sed -i -e 's/make olddefconfig/make LLVM=1 LLVM_IAS=1 olddefconfig/g' PKGBUILD
            sed -i -e 's/make -s kernelrelease/make LLVM=1 LLVM_IAS=1 -s kernelrelease/g' PKGBUILD
