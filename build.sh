@@ -1,4 +1,6 @@
 #!/bin/sh
+USERID=$1
+
 #pacman -Syu --noconfirm base-devel sudo schedtool
 pacman -Syu --noconfirm base-devel sudo git schedtool
 pacman --disable-sandbox --noconfirm -U *.pkg.tar.zst
