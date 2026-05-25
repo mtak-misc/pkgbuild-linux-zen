@@ -55,9 +55,10 @@ jobs:
           GH_TOKEN: ${{ secrets.pat }}
 #           sed -i -e 's/$_srctag/6.2\/main/g' PKGBUILD
       - name: Build kernel
-        run: |
-           docker run -e USERID=$(id -u $(whoami)) -e GITHUB_TOKEN=${{ secrets.pat }} -v $GITHUB_WORKSPACE:/workspace archlinux:latest /bin/bash /workspace/build.sh
-           cp $GITHUB_WORKSPACE/linux-zen/trunk/*.pkg.tar.zst /tmp
+        uses: docker://archlinux:latest
+        with:
+          entrypoint: '/bin/sh'
+          args: ./build.sh ${{ env.USERID }}
       - uses: actions/upload-artifact@v7
         with:
           name: linux-zen
