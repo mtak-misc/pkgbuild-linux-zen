@@ -22,7 +22,7 @@ jobs:
           ref: 'packages/linux-zen'
           path: linux-zen
       - name: Cleanup
-        if: ${{ 'true' == 'false' }}
+#        if: ${{ 'true' == 'false' }}
         run: |
           sh ./cleanup.sh
       - name: Prepare for build
