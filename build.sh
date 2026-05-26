@@ -8,4 +8,4 @@ useradd builder  -u $USERID -m -G wheel && echo "builder ALL=(ALL) NOPASSWD: ALL
 su builder -c "gpg --keyserver hkps://ubuntu.com --recv-key 19802F8B0D70FC30"
 su builder -c "gpg --keyserver hkps://ubuntu.com --recv-key 38DBBDC86092693E"
 su builder -c "gpg --keyserver hkps://ubuntu.com --recv-key B8AC08600F108CDF"
-cd ./linux-zen ; su builder -c "yes '' | MAKEFLAGS=\"-j $(nproc)\" makepkg --noconfirm -sc"
+cd ./linux-zen ; su builder -c "yes '' | MAKEFLAGS=\"-j $(nproc)\" makepkg --noconfirm --skippgpcheck -sc"
