@@ -15,12 +15,6 @@ jobs:
 #          swap-size-gb: 13
       - name: Check out repository
         uses: actions/checkout@v6
-      - name: Check out linux-zen repository
-        uses: actions/checkout@v6
-        with:
-          repository: archlinux/svntogit-packages
-          ref: 'packages/linux-zen'
-          path: linux-zen
       - name: Cleanup
 #        if: ${{ 'true' == 'false' }}
         run: |
@@ -31,7 +25,8 @@ jobs:
            gh release download --repo mtak-misc/archive --pattern "llvm.zip"
            unzip llvm.zip
 
-           cd linux-zen/trunk/
+           git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen.git
+           cd linux-zen
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
