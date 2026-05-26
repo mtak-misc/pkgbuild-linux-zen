@@ -56,4 +56,4 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: linux-zen
-          path: /tmp/*.pkg.tar.zst
+          path: ${{ github.workspace }}/linux-zen/*.pkg.tar.zst
