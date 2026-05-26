@@ -31,12 +31,13 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
            sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 /g' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d DEFAULT_CUBIC' PKGBUILD
 #           sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
 #           curl -LO https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.3/0013-optimize_harder_O3.patch           
 #           sed -i -e '/echo "Setting config..."/i \ \ patch -Np1 -i ../../0013-optimize_harder_O3.patch' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr2' PKGBUILD
-#           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR2' PKGBUILD
-#           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d DEFAULT_CUBIC' PKGBUILD
+
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR2' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_ZEN_INTERACTIVE' PKGBUILD
