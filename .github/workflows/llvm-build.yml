@@ -34,8 +34,8 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s|^CONFIG_GENERIC_CPU=y|# CONFIG_GENERIC_CPU is not set|g" .config' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s|^# CONFIG_GENERIC_CPU2 is not set|CONFIG_GENERIC_CPU2=y|g" .config' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-val X86_64_VERSION 2' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e GENERIC_CPU -d X86_NATIVE_CPU' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_GENERIC_CPU2' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_GENERIC_CPU' PKGBUILD           
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr' PKGBUILD
