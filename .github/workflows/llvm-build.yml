@@ -34,9 +34,10 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_GENERIC_CPU2' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_GENERIC_CPU' PKGBUILD
-           
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s|^CONFIG_GENERIC_CPU=y|# CONFIG_GENERIC_CPU is not set|g" .config' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ sed -i "s|^# CONFIG_GENERIC_CPU2 is not set|CONFIG_GENERIC_CPU2=y|g" .config' PKGBUILD
+#           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_GENERIC_CPU2' PKGBUILD
+#           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_GENERIC_CPU' PKGBUILD           
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr' PKGBUILD
 #           sed -i -e 's/xz/xz llvm lld clang/g' PKGBUILD
 #           curl -LO https://raw.githubusercontent.com/Frogging-Family/linux-tkg/master/linux-tkg-patches/6.3/0013-optimize_harder_O3.patch           
