@@ -30,7 +30,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
-           sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 KCFLAGS="-march=x86-64-v2" KCPPFLAGS="-march=x86-64-v2" /g' PKGBUILD
+           sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 KCFLAGS=" -march=x86-64-v2" KCPPFLAGS=" -march=x86-64-v2" /g' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR' PKGBUILD
