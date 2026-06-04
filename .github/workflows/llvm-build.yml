@@ -33,13 +33,13 @@ jobs:
            sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 /g' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
             LINE_NUM=$(grep -E -n "^KBUILD_CFLAGS\s+\+=\s+\\\\\\\$(KCFLAGS)" Makefile | head -n1 | cut -d":" -f1) \n\
-            if [ ! -z "${LINE_NUM}" ]; then sed -i "${LINE_NUM}i KBUILD_CFLAGS += -march=x86-64-v2 -mtune=generic" Makefile; fi' PKGBUILD
+            sed -i "${LINE_NUM}i KBUILD_CFLAGS += -march=x86-64-v2 -mtune=generic" Makefile' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
             CPP_LINE_NUM=$(grep -E -n "^KBUILD_CPPFLAGS\s+\+=\s+\\\\\\\$(KCPPFLAGS)" Makefile | head -n1 | cut -d":" -f1) \n\
-            if [ ! -z "${CPP_LINE_NUM}" ]; then sed -i "${CPP_LINE_NUM}i KBUILD_CPPFLAGS += -march=x86-64-v2 -mtune=generic" Makefile; fi' PKGBUILD
+            sed -i "${CPP_LINE_NUM}i KBUILD_CPPFLAGS += -march=x86-64-v2 -mtune=generic" Makefile' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
             RUST_LINE_NUM=$(grep -E -n "^KBUILD_RUSTFLAGS\s+\+=\s+\\\\\\\$(KRUSTFLAGS)" Makefile | head -n1 | cut -d":" -f1) \n\
-            if [ ! -z "${RUST_LINE_NUM}" ]; then sed -i "${RUST_LINE_NUM}i KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile; fi' PKGBUILD
+            sed -i "${RUST_LINE_NUM}i KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile' PKGBUILD
 
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
