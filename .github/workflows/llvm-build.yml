@@ -43,7 +43,7 @@ jobs:
             if [ ! -z "${CPP_LINE_NUM}" ]; then sed -i "${CPP_LINE_NUM}i KBUILD_CPPFLAGS += -march=x86-64-v2 -mtune=generic" Makefile; fi' PKGBUILD
 
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
-            RUST_LINE_NUM=$(grep -E -n "^KBUILD_RUSTFLAGS\s+\+=\s+\\\\\\\$(KRUSTFLAGS)" Makefile | head -n1 | cut -d":" -f1) \n\
+            RUST_LINE_NUM=$(grep -E -n "KBUILD_RUSTFLAGS_KERNEL :=" Makefile | head -n1 | cut -d":" -f1) \n\
             echo "==> [DEBUG] KBUILD_RUSTFLAGS insertion line: ${RUST_LINE_NUM:-NOT FOUND}" \n\
             if [ ! -z "${RUST_LINE_NUM}" ]; then sed -i "${RUST_LINE_NUM}i KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile; fi' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
