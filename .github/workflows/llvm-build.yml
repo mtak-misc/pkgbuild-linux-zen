@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
       - name: Cleanup
-#        if: ${{ 'true' == 'false' }}
+        if: ${{ 'true' == 'false' }}
         run: |
           sh ./cleanup.sh
       - name: Prepare for build
@@ -33,7 +33,7 @@ jobs:
            sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 /g' PKGBUILD
 
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
-            LINE_NUM=$(grep -E -n "^KBUILD_CFLAGS\s+\+=\s+\\\\\\\$(KCFLAGS)" Makefile | head -n1 | cut -d":" -f1) \n\
+            LINE_NUM=$(grep -E -n '^KBUILD_CFLAGS[[:space:]]+\+=[[:space:]]+\$\(KCFLAGS\)' Makefile 2> /dev/null | head -n1 | cut -d":" -f1) \n\
             echo "==> [DEBUG] KBUILD_CFLAGS insertion line: ${LINE_NUM:-NOT FOUND}" \n\
             if [ ! -z "${LINE_NUM}" ]; then sed -i "${LINE_NUM}i KBUILD_CFLAGS += -march=x86-64-v2 -mtune=generic" Makefile; fi' PKGBUILD
 
