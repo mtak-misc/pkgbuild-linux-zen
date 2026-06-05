@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
       - name: Cleanup
-#        if: ${{ 'true' == 'false' }}
+        if: ${{ 'true' == 'false' }}
         run: |
           sh ./cleanup.sh
       - name: Prepare for build
@@ -45,7 +45,8 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
             RUST_LINE_NUM=$(grep -E -n "KBUILD_RUSTFLAGS_KERNEL :=" Makefile | head -n1 | cut -d":" -f1) \n\
             echo "==> [DEBUG] KBUILD_RUSTFLAGS insertion line: ${RUST_LINE_NUM:-NOT FOUND}" \n\
-            sed -i "${RUST_LINE_NUM}i KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile' PKGBUILD
+            sed -i "${RUST_LINE_NUM}i KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile\n\
+            cat ./Makefile' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR' PKGBUILD
