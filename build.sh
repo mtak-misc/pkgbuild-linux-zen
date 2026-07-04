@@ -8,6 +8,7 @@ sed -i \
   's|^  https://cdn\.kernel\.org/pub/linux/kernel/v${pkgver%%\.\*}\.x/${_srcname}\.tar\.{xz,sign}$|  "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=v${pkgver%.*}"|' \
   ./linux-zen/PKGBUILD
 sed  -i "/'SKIP')$/b; /'SKIP'/d" ./linux-zen/PKGBUILD
+sed -i "s/37198c93727be247c9fb5309bb86cd5e496c61e5322cd8c4eca9476bb0b5883f/SKIP/g" ./linux-zen/PKGBUILD
 updpkgsums ./linux-zen/PKGBUILD
 cat ./linux-zen/PKGBUILD
 
