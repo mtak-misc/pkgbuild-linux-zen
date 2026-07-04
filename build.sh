@@ -9,10 +9,10 @@ sed -i \
   ./linux-zen/PKGBUILD
 sed -i \
   "s/^b2sums=('0d6e9ff535af085190da7df50887b20f395cd4d6befb7158c9993bf77fe92459a9982877ce944ca522192daa5a54c952c3d368def04b579796ba7109a972453b'$/b2sums=('SKIP'/" \
-  PKGBUILD
+  ./linux-zen/PKGBUILD
 sed -i \
   "s/^sha256sums=('37198c93727be247c9fb5309bb86cd5e496c61e5322cd8c4eca9476bb0b5883f'$/sha256sums=('SKIP'/" \
-  PKGBUILD
+  ./linux-zen/PKGBUILD
 updpkgsums ./linux-zen/PKGBUILD
 cat ./linux-zen/PKGBUILD
 
