@@ -7,7 +7,7 @@ pacman --disable-sandbox --noconfirm -U *.pkg.tar.zst
 sed -i \
   's|^  https://cdn\.kernel\.org/pub/linux/kernel/v${pkgver%%\.\*}\.x/${_srcname}\.tar\.{xz,sign}$|  "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git#tag=v${pkgver%.*}"|' \
   ./linux-zen/PKGBUILD
-
+sed  -i "/'SKIP')$/b; /'SKIP'/d" ./linux-zen/PKGBUILD
 updpkgsums ./linux-zen/PKGBUILD
 cat ./linux-zen/PKGBUILD
 
