@@ -9,6 +9,7 @@ sed -i \
   ./linux-zen/PKGBUILD
 sed  -i "/'SKIP')$/b; /'SKIP'/d" ./linux-zen/PKGBUILD
 sed -i "s/37198c93727be247c9fb5309bb86cd5e496c61e5322cd8c4eca9476bb0b5883f/SKIP/g" ./linux-zen/PKGBUILD
+sed -i "s/0d6e9ff535af085190da7df50887b20f395cd4d6befb7158c9993bf77fe92459a9982877ce944ca522192daa5a54c952c3d368def04b579796ba7109a972453b/SKIP/g" ./linux-zen/PKGBUILD
 updpkgsums ./linux-zen/PKGBUILD
 cat ./linux-zen/PKGBUILD
 
