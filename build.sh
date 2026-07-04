@@ -5,7 +5,7 @@ USERID=$1
 pacman -Syu --noconfirm base-devel sudo git schedtool pacman-contrib
 pacman --disable-sandbox --noconfirm -U *.pkg.tar.zst
 sed -i \
-  's|^  https://cdn\.kernel\.org/pub/linux/kernel/v\$\{pkgver%%\.\*\}\.x/\$\{_srcname\}\.tar\.\{xz,sign\}$|  "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git?signed#tag=v${pkgver%.*}"|' \
+  's|^  https://cdn\.kernel\.org/pub/linux/kernel/v${pkgver%%\.\*}\.x/${_srcname}\.tar\.{xz,sign}$|  "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git?signed#tag=v${pkgver%.*}"|' \
   ./linux-zen/PKGBUILD
 updpkgsums ./linux-zen/PKGBUILD
 cat ./linux-zen/PKGBUILD
