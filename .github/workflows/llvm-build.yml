@@ -46,9 +46,10 @@ jobs:
             RUST_LINE_NUM=$(grep -E -n "KBUILD_RUSTFLAGS_KERNEL :=" Makefile | head -n1 | cut -d":" -f1) \n\
             echo "==> [DEBUG] KBUILD_RUSTFLAGS insertion line: ${RUST_LINE_NUM:-NOT FOUND}" \n\
             sed -i "${RUST_LINE_NUM}a KBUILD_RUSTFLAGS += -Ctarget-cpu=x86-64-v2 -Ztune-cpu=generic" Makefile' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e DEFAULT_BBR3' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
-           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_BBR' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR3' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_GENERIC_CPU2' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_GENERIC_CPU' PKGBUILD           
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr' PKGBUILD
