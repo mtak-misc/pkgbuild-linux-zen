@@ -50,6 +50,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_CUBIC' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -m CONFIG_TCP_CONG_BBR' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_TCP_CONG_BBR3' PKGBUILD
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_FORTIFY_SOURCE' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_GENERIC_CPU2' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_GENERIC_CPU' PKGBUILD           
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config --set-str DEFAULT_TCP_CONG bbr' PKGBUILD
