@@ -31,7 +31,10 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
-            
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
+             curl -fsSL https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.2.4.tar.xz -o /tmp/linux-7.2.4.tar.xz \n\
+             tar -xJOf /tmp/linux-7.2.4.tar.xz linux-7.2.4/drivers/gpu/drm/gud/gud_connector.c > drivers/gpu/drm/gud/gud_connector.c' PKGBUILD
+             
            sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 /g' PKGBUILD
 
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
