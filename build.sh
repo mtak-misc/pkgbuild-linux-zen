@@ -3,8 +3,7 @@ USERID=$1
 
 #pacman -Syu --noconfirm base-devel sudo schedtool
 pacman -Syu --noconfirm base-devel sudo git schedtool
-#pacman --disable-sandbox --noconfirm -U *.pkg.tar.zst
-pacman -S --noconfirm clang21 lld21 llvm21
+pacman --disable-sandbox --noconfirm -U *.pkg.tar.zst
 
 #sed -i \
 #  's|^  https://cdn\.kernel\.org/pub/linux/kernel/v${pkgver%%\.\*}\.x/${_srcname}\.tar\.{xz,sign}$|  "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git?signed#tag=v${pkgver%.*}"|' \
