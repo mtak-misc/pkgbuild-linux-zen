@@ -21,10 +21,6 @@ jobs:
           sh ./cleanup.sh
       - name: Prepare for build
         run: |
-           echo "USERID=$(id -u $(whoami))" >> $GITHUB_ENV
-           gh release download --repo mtak-misc/archive --pattern "llvm.zip"
-           unzip llvm.zip
-
            git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen.git
            cd linux-zen
            
@@ -69,6 +65,10 @@ jobs:
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_SCHED_BMQ' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_SCHED_ALT' PKGBUILD
 #           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_NUMA' PKGBUILD
+#           echo "USERID=$(id -u $(whoami))" >> $GITHUB_ENV
+#           gh release download --repo mtak-misc/archive --pattern "llvm.zip"
+#           unzip llvm.zip
+
         env: 
           USERID: ''
           GH_TOKEN: ${{ secrets.pat }}
