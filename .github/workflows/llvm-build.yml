@@ -28,7 +28,7 @@ jobs:
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_NONE' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -e CONFIG_LTO_CLANG_FULL' PKGBUILD
            sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \ \ scripts/config -d CONFIG_LTO_CLANG_THIN' PKGBUILD
-           sed -i -e '/scripts\/config --enable STACK_VALIDATION/a \
+           sed -i -e '/echo "Prepared $pkgbase version $(<version)"/a \
              echo "CFLAGS_gud_connector.o += -O2" >> drivers/gpu/drm/gud/Makefile' PKGBUILD
              
            sed -i -e 's/make /make LLVM=1 LLVM_IAS=1 /g' PKGBUILD
